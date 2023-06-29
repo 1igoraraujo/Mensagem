@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>C*zinho hoje?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            background-color: white;
+            color: blue;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .emoji {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>C*zinho sábado?</h2>
+    <div class="button-container">
+        <button id="simButton" class="button">Sim</button>
+        <button id="naoButton" class="button">Não</button>
+    </div>
+    <span id="emoji" class="emoji"></span>
+
+    <script>
+        function getRandomPosition() {
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+            var randomX = Math.floor(Math.random() * (screenWidth - 100));
+            var randomY = Math.floor(Math.random() * (screenHeight - 100));
+            return [randomX, randomY];
+        }
+
+        function moveButton() {
+            var button = document.getElementById('naoButton');
+            var newPosition = getRandomPosition();
+            button.style.position = 'absolute';
+            button.style.left = newPosition[0] + 'px';
+            button.style.top = newPosition[1] + 'px';
+        }
+
+        document.getElementById('naoButton').addEventListener('click', function () {
+            var emoji = document.getElementById('emoji');
+            emoji.textContent = '😢';
+            moveButton();
+        });
+
+        document.getElementById('simButton').addEventListener('click', function () {
+            document.body.style.backgroundColor = 'red';
+            var message = document.createElement('h2');
+            message.textContent = 'Parabéns você deixou seu namorado feliz';
+
+            var buttonContainer = document.querySelector('.button-container');
+            buttonContainer.remove();
+
+            var emoji = document.getElementById('emoji');
+            emoji.remove();
+
+            var messages = document.querySelectorAll('h2');
+            messages.forEach(function (msg) {
+                msg.remove();
+            });
+
+            document.body.appendChild(message);
+        });
+    </script>
+</body>
+</html>
